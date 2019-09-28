@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Pelican 是一套开源的使用 Python 编写的博客静态生成, 可以添加文章和和创建页面, 可以使用 MarkDown reStructuredText 和 AsiiDoc 的格式来抒写, 同时使用 Disqus 评论系统, 支持 RSS 和 Atom 输出, 插件, 主题, 代码高亮等功能, 采用 Jajin2 模板引擎, 可以很容易的更改模板">
+<meta name="keywords" content="Pelican,github,搭建博客">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pelican + github 搭建个人博客">
+<meta property="og:url" content="http://seveninsight.github.io/blog/2018/12/10/pelican + github 搭建个人博客/index.html">
+<meta property="og:site_name" content="七年弹指间的博客">
+<meta property="og:description" content="Pelican 是一套开源的使用 Python 编写的博客静态生成, 可以添加文章和和创建页面, 可以使用 MarkDown reStructuredText 和 AsiiDoc 的格式来抒写, 同时使用 Disqus 评论系统, 支持 RSS 和 Atom 输出, 插件, 主题, 代码高亮等功能, 采用 Jajin2 模板引擎, 可以很容易的更改模板">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-03T03:07:23.649Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pelican + github 搭建个人博客">
+<meta name="twitter:description" content="Pelican 是一套开源的使用 Python 编写的博客静态生成, 可以添加文章和和创建页面, 可以使用 MarkDown reStructuredText 和 AsiiDoc 的格式来抒写, 同时使用 Disqus 评论系统, 支持 RSS 和 Atom 输出, 插件, 主题, 代码高亮等功能, 采用 Jajin2 模板引擎, 可以很容易的更改模板">
+
+
+
+
+
+
+  <link rel="canonical" href="http://seveninsight.github.io/blog/2018/12/10/pelican + github 搭建个人博客/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>pelican + github 搭建个人博客 | 七年弹指间的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">七年弹指间的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">知是行之始，行是知之成</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://seveninsight.github.io/blog/blog/2018/12/10/pelican + github 搭建个人博客/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="七年弹指间">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="七年弹指间的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">pelican + github 搭建个人博客
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-10 16:39:00" itemprop="dateCreated datePublished" datetime="2018-12-10T16:39:00+08:00">2018-12-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-03 11:07:23" itemprop="dateModified" datetime="2019-01-03T11:07:23+08:00">2019-01-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/blog/categories/搭建博客/" itemprop="url" rel="index"><span itemprop="name">搭建博客</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/blog/categories/搭建博客/Pelican/" itemprop="url" rel="index"><span itemprop="name">Pelican</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Pelican 是一套开源的使用 Python 编写的博客静态生成, 可以添加文章和和创建页面, 可以使用 MarkDown reStructuredText 和 AsiiDoc 的格式来抒写, 同时使用 Disqus 评论系统, 支持 RSS 和 Atom 输出, 插件, 主题, 代码高亮等功能, 采用 Jajin2 模板引擎, 可以很容易的更改模板</p>
+<a id="more"></a>
+<h2 id="一、安装环境"><a href="#一、安装环境" class="headerlink" title="一、安装环境"></a>一、安装环境</h2><h3 id="1-1-需要安装的软件"><a href="#1-1-需要安装的软件" class="headerlink" title="1.1 需要安装的软件"></a>1.1 需要安装的软件</h3><ol>
+<li><p>Python</p>
+<ul>
+<li>python2 或者 python3</li>
+<li>pip</li>
+<li>virtualenv</li>
+<li>pelican</li>
+<li>markdown</li>
+</ul>
+</li>
+<li><p>make</p>
+</li>
+</ol>
+<!--more-->
+<h3 id="1-2-安装步骤"><a href="#1-2-安装步骤" class="headerlink" title="1.2 安装步骤"></a>1.2 安装步骤</h3><h4 id="1-2-1-安装-Python"><a href="#1-2-1-安装-Python" class="headerlink" title="1.2.1 安装 Python"></a>1.2.1 安装 Python</h4><p>安装 Python2 或者 Python3 。</p>
+<h4 id="1-2-2-安装-virtualenv"><a href="#1-2-2-安装-virtualenv" class="headerlink" title="1.2.2 安装 virtualenv"></a>1.2.2 安装 virtualenv</h4><pre><code># 安装 virtualenv 包
+pip install virtualenv
+
+# 为了使用virtualenv更方便，可以借助 virtualenvwrapper（可选）
+pip install virtualenvwrapper-win
+</code></pre><h4 id="1-2-3-创建并激活虚拟环境"><a href="#1-2-3-创建并激活虚拟环境" class="headerlink" title="1.2.3 创建并激活虚拟环境"></a>1.2.3 创建并激活虚拟环境</h4><p>1）配置虚拟环境目录。</p>
+<p>默认创建的虚拟环境位于C:\Users\username\下，可以通过环境变量 WORKON_HOME 来定制。<br>通过计算机–&gt;属性–&gt;高级系统设置–&gt;环境变量–&gt;系统变量中新建“变量名”：WORKON_HOME，变量值：你自定义的用来创建虚拟环境的路径。</p>
+<p>2）创建虚拟环境</p>
+<pre><code># 新建 pelican 虚拟环境所在目录（如果通过环境变量设置了虚拟环境的目录，则不需要），例如：
+mkdir Virtualenv
+cd Virtualenv
+
+# 创建并激活虚拟环境
+mkvirtualenv env_pelican
+</code></pre><p>常用命令：</p>
+<pre><code># 激活虚拟环境
+workon {虚拟环境目录}
+# 停止虚拟环境
+deactivate
+# 进入虚拟环境目录
+cdvirtualenv
+# 列出所有虚拟环境
+lsvirtualenv
+# 检查虚拟环境是否激活（其他方法也可）
+pip list
+</code></pre><h4 id="1-2-4-安装-Python-的相关模块"><a href="#1-2-4-安装-Python-的相关模块" class="headerlink" title="1.2.4 安装 Python 的相关模块"></a>1.2.4 安装 Python 的相关模块</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 安装 pelican 和 markdown 模块</span><br><span class="line">pip install pelican</span><br><span class="line">pip install markdown</span><br></pre></td></tr></table></figure>
+<h4 id="1-2-5-安装-make-并设置好环境变量"><a href="#1-2-5-安装-make-并设置好环境变量" class="headerlink" title="1.2.5 安装 make 并设置好环境变量"></a>1.2.5 安装 make 并设置好环境变量</h4><p>make 下载地址：<br><a href="http://gnuwin32.sourceforge.net/packages/make.htm" target="_blank" rel="noopener">http://gnuwin32.sourceforge.net/packages/make.htm</a></p>
+<p>建议把 make 放在<code>./windows/system32</code>目录下，省去设置环境变量的麻烦。</p>
+<h2 id="二、生成-pelican-博客"><a href="#二、生成-pelican-博客" class="headerlink" title="二、生成 pelican 博客"></a>二、生成 pelican 博客</h2><h3 id="2-1-创建-pelican"><a href="#2-1-创建-pelican" class="headerlink" title="2.1 创建 pelican"></a>2.1 创建 pelican</h3><p>1）创建目录，用于存放 pelican 程序。</p>
+<pre><code>mkdir pelican-blog
+cd pelican-blog
+</code></pre><p>2）创建 pelican 博客</p>
+<pre><code># pelican 快速创建程序
+pelican-quickstart
+</code></pre><p>进入创建程序，出现如下提示：</p>
+<pre><code>&gt; Where do you want to create your new web site? [.]  # 默认
+&gt; What will be the title of this web site? myblog  # 输入博客名称，例如：myblog
+&gt; Who will be the author of this web site? obama  # 输入博客作者
+&gt; What will be the default language of this web site? [Chinese (Simplified)]  # 默认中文
+&gt; Do you want to specify a URL prefix? e.g., https://example.com   (Y/n)  # Y ，如果打算放在github上，可以选择 n
+&gt; What is your URL prefix? (see above example; no trailing slash)  # 输入githup地址，例如：https://myblog.github.io
+&gt; Do you want to enable article pagination? (Y/n)  # 默认
+&gt; How many articles per page do you want? [10]  # 默认
+&gt; What is your time zone? [Europe/Paris]  # Asia/Shanghai
+&gt; Do you want to generate a tasks.py/Makefile to automate generation and publishing? (Y/n)  # 默认
+&gt; Do you want to upload your website using FTP? (y/N)  # N
+&gt; Do you want to upload your website using SSH? (y/N)  # N
+&gt; Do you want to upload your website using Dropbox? (y/N)  # N
+&gt; Do you want to upload your website using S3? (y/N)  # N
+&gt; Do you want to upload your website using Rackspace Cloud Files? (y/N)  # N
+&gt; Do you want to upload your website using GitHub Pages? (y/N)  # 如果是用 github，默认
+Done. Your new project is available at F:\Blog\pelican_blog
+</code></pre><h3 id="2-2-配置-pelican"><a href="#2-2-配置-pelican" class="headerlink" title="2.2 配置 pelican"></a>2.2 配置 pelican</h3><p>pelican 的配置文件是<code>pelicanconf.py</code>。</p>
+<p>1）下载主题</p>
+<p>pelican 的主题可以从这里下载：<br><a href="https://github.com/getpelican/pelican-themes" target="_blank" rel="noopener">https://github.com/getpelican/pelican-themes</a></p>
+<p>2）设置主题</p>
+<p>先把下载好的主题文件放在博客程序根目录下的 <code>pelican-themes</code>文件夹下。<br>如果没有这个文件夹，自己创建一个。</p>
+<p>在<code>pelicanconf.py</code>文件的任意位置添加一行：</p>
+<pre><code>THEME = &apos;主题目录（相对或绝对路径）&apos;
+</code></pre><p>例如，在 TIMEZONE 配置的下一行添加：</p>
+<pre><code>TIMEZONE = &apos;Asia/Shanghai&apos;
+THEME = &apos;./pelican-themes/fresh&apos;
+</code></pre><h3 id="2-3-生成-HTML-文件"><a href="#2-3-生成-HTML-文件" class="headerlink" title="2.3 生成 HTML 文件"></a>2.3 生成 HTML 文件</h3><p>1）把 markdown 文件放在博客根目录的<code>content</code>文件夹下。</p>
+<p>2）运行下面的命令，生成 HTML 文件</p>
+<pre><code>pelican
+# 或者
+pelican content
+# 或者
+make html
+# 或者
+make publish
+</code></pre><p>3）生成的 HTML 文件在 <code>output</code> 目录下。</p>
+<p>注意：</p>
+<p>在生成HTML文件之前，要先在 markdown 文件开头添加一些必要的文件属性，这些属性放在<code>---</code>之间。</p>
+<p>例如：</p>
+<pre><code>---
+Title: pelican + github 搭建个人博客  （填写文章的标题，必填）
+Slug: pelican + github creat blog  （生成的HTML文件名称，必填）
+Date: 2018-12-10 16:39  （文章的发布时间）
+Category: 搭建博客  （文章的分类）
+Tags: pelican, github  （标签，多个标签之间用英文逗号隔开）
+Author: xxx  （作者）
+Summary: 使用 pelican + github 搭建个人博客。  （文章的摘要）
+---
+</code></pre><h3 id="2-4-本地预览博客"><a href="#2-4-本地预览博客" class="headerlink" title="2.4 本地预览博客"></a>2.4 本地预览博客</h3><p>1）执行命令：<code>make serve</code></p>
+<p>2）在浏览器中输入地址：<code>http://127.0.0.1:8000</code>就可以看到效果。</p>
+<h2 id="三、同步到-github"><a href="#三、同步到-github" class="headerlink" title="三、同步到 github"></a>三、同步到 github</h2><p>1、 创建 github 博客仓库</p>
+<p>github博客的仓库名称是固定格式的，必须是 <code>用户名.github.io</code>。<br>如果还没有这样命名的仓库，请先创建。</p>
+<p>2、把 output 目录下的文件全部提交到 <code>xxx.github.io</code> 仓库。（xxx代表你的用户名）</p>
+<p>3、在浏览器中输入地址：<code>https://xxx.github.io/</code>就可以浏览你的博客了。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Pelican/" rel="tag"># Pelican</a>
+          
+            <a href="/blog/tags/github/" rel="tag"># github</a>
+          
+            <a href="/blog/tags/搭建博客/" rel="tag"># 搭建博客</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018/08/26/VSCode使用教程（1）：基本设置与配置详解/" rel="next" title="VSCode使用教程（1）：基本设置与配置详解">
+                <i class="fa fa-chevron-left"></i> VSCode使用教程（1）：基本设置与配置详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/12/30/每天一个Linux命令（1）：pwd/" rel="prev" title="每天一个Linux命令（1）：pwd">
+                每天一个Linux命令（1）：pwd <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">七年弹指间</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/blog/archives/">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/blog/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/blog/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、安装环境"><span class="nav-text">一、安装环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-需要安装的软件"><span class="nav-text">1.1 需要安装的软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-安装步骤"><span class="nav-text">1.2 安装步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1-安装-Python"><span class="nav-text">1.2.1 安装 Python</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2-安装-virtualenv"><span class="nav-text">1.2.2 安装 virtualenv</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-3-创建并激活虚拟环境"><span class="nav-text">1.2.3 创建并激活虚拟环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-4-安装-Python-的相关模块"><span class="nav-text">1.2.4 安装 Python 的相关模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-5-安装-make-并设置好环境变量"><span class="nav-text">1.2.5 安装 make 并设置好环境变量</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、生成-pelican-博客"><span class="nav-text">二、生成 pelican 博客</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-创建-pelican"><span class="nav-text">2.1 创建 pelican</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-配置-pelican"><span class="nav-text">2.2 配置 pelican</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-生成-HTML-文件"><span class="nav-text">2.3 生成 HTML 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-本地预览博客"><span class="nav-text">2.4 本地预览博客</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、同步到-github"><span class="nav-text">三、同步到 github</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">七年弹指间</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/blog/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/blog/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/blog/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/blog/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/blog/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/blog/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/blog/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

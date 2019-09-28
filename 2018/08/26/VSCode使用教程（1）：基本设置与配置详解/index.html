@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Visual Studio Code (简称 VS Code / VSC) 是一款免费开源的现代化轻量级代码编辑器，支持几乎所有主流的开发语言的语法高亮、智能代码补全、自定义快捷键、括号匹配和颜色区分、代码片段、代码对比 Diff、GIT命令 等特性，支持插件扩展，并针对网页开发和云端应用开发做了优化。软件跨平台支持 Win、Mac 以及 Linux，运行流畅，可谓是微软的良心之作。">
+<meta name="keywords" content="VSCode,Python,编程工具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VSCode使用教程（1）：基本设置与配置详解">
+<meta property="og:url" content="http://seveninsight.github.io/blog/2018/08/26/VSCode使用教程（1）：基本设置与配置详解/index.html">
+<meta property="og:site_name" content="七年弹指间的博客">
+<meta property="og:description" content="Visual Studio Code (简称 VS Code / VSC) 是一款免费开源的现代化轻量级代码编辑器，支持几乎所有主流的开发语言的语法高亮、智能代码补全、自定义快捷键、括号匹配和颜色区分、代码片段、代码对比 Diff、GIT命令 等特性，支持插件扩展，并针对网页开发和云端应用开发做了优化。软件跨平台支持 Win、Mac 以及 Linux，运行流畅，可谓是微软的良心之作。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-03T03:07:10.066Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VSCode使用教程（1）：基本设置与配置详解">
+<meta name="twitter:description" content="Visual Studio Code (简称 VS Code / VSC) 是一款免费开源的现代化轻量级代码编辑器，支持几乎所有主流的开发语言的语法高亮、智能代码补全、自定义快捷键、括号匹配和颜色区分、代码片段、代码对比 Diff、GIT命令 等特性，支持插件扩展，并针对网页开发和云端应用开发做了优化。软件跨平台支持 Win、Mac 以及 Linux，运行流畅，可谓是微软的良心之作。">
+
+
+
+
+
+
+  <link rel="canonical" href="http://seveninsight.github.io/blog/2018/08/26/VSCode使用教程（1）：基本设置与配置详解/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>VSCode使用教程（1）：基本设置与配置详解 | 七年弹指间的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">七年弹指间的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">知是行之始，行是知之成</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://seveninsight.github.io/blog/blog/2018/08/26/VSCode使用教程（1）：基本设置与配置详解/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="七年弹指间">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="七年弹指间的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">VSCode使用教程（1）：基本设置与配置详解
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-26 16:39:00" itemprop="dateCreated datePublished" datetime="2018-08-26T16:39:00+08:00">2018-08-26</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-03 11:07:10" itemprop="dateModified" datetime="2019-01-03T11:07:10+08:00">2019-01-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/blog/categories/编程工具/" itemprop="url" rel="index"><span itemprop="name">编程工具</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/blog/categories/编程工具/VSCode/" itemprop="url" rel="index"><span itemprop="name">VSCode</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Visual Studio Code (简称 VS Code / VSC) 是一款免费开源的现代化轻量级代码编辑器，支持几乎所有主流的开发语言的语法高亮、智能代码补全、自定义快捷键、括号匹配和颜色区分、代码片段、代码对比 Diff、GIT命令 等特性，支持插件扩展，并针对网页开发和云端应用开发做了优化。软件跨平台支持 Win、Mac 以及 Linux，运行流畅，可谓是微软的良心之作。</p>
+<a id="more"></a>
+<h2 id="1-基本设置与配置详解"><a href="#1-基本设置与配置详解" class="headerlink" title="1 基本设置与配置详解"></a>1 基本设置与配置详解</h2><h3 id="1-1-用户设置与工作空间设置"><a href="#1-1-用户设置与工作空间设置" class="headerlink" title="1.1 用户设置与工作空间设置"></a>1.1 用户设置与工作空间设置</h3><p>VS Code提供了两种设置方式：</p>
+<ul>
+<li>用户设置<br>  这种方式进行的设置，会应用于该用户打开的所有工程</li>
+<li>工作空间设置<br>  <code>工作空间</code>是指使用 VSCode 打开的某个文件夹。在该文件夹下会创建一个名为<code>.vscode</code>的隐藏文件夹，里面包含着<strong>仅适用于当前目录的</strong> VSCode 的设置。<br>  工作空间的设置会覆盖用户的设置。</li>
+</ul>
+<p>每个人都有自己的偏好，在使用 VSCode 进行开发时，都会根据自己的习惯来对 VSCode 进行用户级别的配置。<br>但是，当多人共同完成某个项目的时候，该项目会有一定的编码规范。如: 编辑某个语言时的设置，代码的缩进等等，这个时候就需要对该项目进行单独的工作空间级别的设置。</p>
+<h3 id="1-2-更改默认用户设置与工作空间设置"><a href="#1-2-更改默认用户设置与工作空间设置" class="headerlink" title="1.2 更改默认用户设置与工作空间设置"></a>1.2 更改默认用户设置与工作空间设置</h3><p>VSCode 的设置文件为<code>setting.json</code>。</p>
+<p>用户设置的文件保存在如下目录：</p>
+<blockquote>
+<ul>
+<li>Window<br>%APPDATA%\Code\User\settings.json</li>
+<li>Mac<br>$HOME/Library/Application Support/Code/User/settings.json</li>
+<li>Linux<br>$HOME/.config/Code/User/settings.json</li>
+</ul>
+</blockquote>
+<p>工作空间设置的文件保存在当前目录的.vscode文件夹下。</p>
+<p>有四种方式更改设置：</p>
+<ul>
+<li>点击 VSCode 的【文件】 &gt; 【首选项】 &gt; 【设置】 ，打开设置面板；</li>
+<li>在 VSCode 中使用快捷键 <code>Ctrl + ,</code>打开</li>
+<li>使用编辑器直接打开setting.json文件</li>
+<li>在 VSCode 中使用<code>Ctrl+Shift+P</code>打开命令面板，输入 Preferences: Open User Settings 或 Preferences: Open Workspace Settings 。</li>
+</ul>
+<h3 id="1-3-对某个语言进行特定配置"><a href="#1-3-对某个语言进行特定配置" class="headerlink" title="1.3 对某个语言进行特定配置"></a>1.3 对某个语言进行特定配置</h3><p>可以对某个语言进行专门的设定。在 VS Code 中使用 <code>Ctrl+Shift+P</code>打开命令面板，输入 Preferences: Configure language specific settings… ，然后选择相应的语言进行设置。</p>
+<p>也可以直接对setting.json进行编辑。如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"[typescript]"</span>: &#123;</span><br><span class="line">    <span class="attr">"editor.formatOnSave"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">"editor.formatOnPaste"</span>: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"[markdown]"</span>: &#123;</span><br><span class="line">    <span class="attr">"editor.formatOnSave"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">"editor.wordWrap"</span>: <span class="string">"on"</span>,</span><br><span class="line">    <span class="attr">"editor.renderWhitespace"</span>: <span class="string">"all"</span>,</span><br><span class="line">    <span class="attr">"editor.acceptSuggestionOnEnter"</span>: <span class="string">"off"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-4-设置-Python-版本"><a href="#1-4-设置-Python-版本" class="headerlink" title="1.4 设置 Python 版本"></a>1.4 设置 Python 版本</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  // python程序路径，不要写后缀名。</span><br><span class="line">  "python.pythonPath": "C:/Python/Python27/python"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-VSCode-插件"><a href="#2-VSCode-插件" class="headerlink" title="2 VSCode 插件"></a>2 VSCode 插件</h2><h3 id="2-1-安装插件的方法"><a href="#2-1-安装插件的方法" class="headerlink" title="2.1 安装插件的方法"></a>2.1 安装插件的方法</h3><p>方法一：</p>
+<p>打开 VScode，<code>Ctrl + p</code><br>输入 <code>ext install 插件名称</code>，搜索时间可能会比较长。</p>
+<p>方法二：</p>
+<p>打开 VScode，<code>Ctrl + Shift + X</code></p>
+<h3 id="2-2-常见插件"><a href="#2-2-常见插件" class="headerlink" title="2.2 常见插件"></a>2.2 常见插件</h3><ul>
+<li><p><strong>Python 插件</strong></p>
+</li>
+<li><p><strong>Bracket Pair Colorizer</strong><br>代码颜色高亮一般只会帮你区分不同的变量，这款插件给不同的括号换上了不同的颜色，括号的多的时候非常实用。</p>
+</li>
+<li><p><strong>filesize</strong><br>一款在左下角显示文件大小的插件，还是挺实用的。</p>
+</li>
+<li><p><strong>Guides：缩进提示插件</strong></p>
+<p>有人说，vscode里已经有缩进参考线了呀，还需要Guides做什么？<br>的确，vscode有缩进线，但是这个Guides比自带的缩进线更好。</p>
+</li>
+</ul>
+<h4 id="2-2-2-配置-Python"><a href="#2-2-2-配置-Python" class="headerlink" title="2.2.2 配置 Python"></a>2.2.2 配置 Python</h4><ul>
+<li><p><strong>配置flake8</strong></p>
+<p>flake8用于提示代码哪里出错，代码格式不规范也会提示。</p>
+<ol>
+<li>打开命令行</li>
+<li>输入 <code>pip install flake8</code></li>
+<li><p>安装flake8成功后，打开VScode，文件-&gt;首选项-&gt;用户设置，在settings.json文件中输入<code>&quot;python.linting.flake8Enabled&quot;: true</code></p>
+<p> <em>禁止 flake8 提示 line too long</em></p>
+ <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"python.linting.flake8Args"</span>: [<span class="string">"--max-line-length=248"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p><strong>pylint</strong></p>
+<p><code>pip install pylint</code></p>
+</li>
+<li><p><strong>配置yapf 或 autopep8</strong></p>
+<p>安装yapf之后在VScode中按Alt+Shift+F即可自动格式化代码</p>
+<ol>
+<li>打开命令行</li>
+<li>输入 “pip install yapf”</li>
+<li>安装yapf成功后，打开VScode，文件-&gt;首选项-&gt;用户设置，在settings.json文件中输入<code>&quot;python.formatting.provider&quot;: &quot;yapf&quot;</code></li>
+</ol>
+</li>
+</ul>
+<h2 id="几个小技巧"><a href="#几个小技巧" class="headerlink" title="几个小技巧"></a>几个小技巧</h2><ul>
+<li><p>查看函数或者类的定义</p>
+<p>Ctrl+鼠标左键点击函数名或者类名即可跳转到定义处。</p>
+<p>在函数名或者类名上按F12也可以实现同样功能</p>
+</li>
+<li><p>更改变量名</p>
+<p>在变量名上按F2即可实现重命名变量</p>
+</li>
+<li><p>用户代码片段<br>打开【文件】—【首选项】—【用户代码片段】。<br>vscode会提示选择语言，输入Python并回车，打开了python.json。<br>内容格式为json，在根级下面新增一个自己的object，内容如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">"For in enumerator": &#123;</span><br><span class="line">        "prefix": "for/enum",</span><br><span class="line">        "body": [</span><br><span class="line">            "for $&#123;1:index&#125;, $&#123;2:item&#125; in enumerate($&#123;3:array&#125;):",</span><br><span class="line">            <span class="string">"    $&#123;4:pass&#125;"</span></span><br><span class="line">        ],</span><br><span class="line">        "description": "For statement with enumerator"</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>这样在我们输入for/enum再按回车后，就自动生成了：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> index, item <span class="keyword">in</span> enumerate(array):</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>光标停留在index上并选中该词，我们可以直接修改完，按tab切换到item，然后是array、pass。</p>
+</li>
+<li><p>python断点调试</p>
+<p>在行号的左边点击即可设置断点，在左边的调试界面可以查看变量的变化</p>
+</li>
+<li><p>调试时自动暂停在第一句</p>
+<p>配置<code>&quot;stopOnEntry&quot;</code>，设置为false就可以不再暂停。</p>
+</li>
+<li><p>隐藏菜单栏</p>
+<p>这个属于个人习惯。</p>
+<p>如果觉得菜单栏很碍眼，可以点击【查看】-&gt;【切换菜单栏】，即可隐藏菜单栏。</p>
+<p>需要菜单栏的时候按Alt键即可查看</p>
+</li>
+<li><p>设置快捷键</p>
+<p>文件-&gt;首选项-&gt;键盘快捷方式，将需要的修改的快捷键的整个大括号里面的内容复制到右边<code>keybindings.json</code>文件中，然后修改“key”的值为你需要的快捷键即可。</p>
+<p>我这边只修改了复制一行和删除一行的快捷键。</p>
+</li>
+</ul>
+<h2 id="主题与图标"><a href="#主题与图标" class="headerlink" title="主题与图标"></a>主题与图标</h2><p>推荐主题：</p>
+<ul>
+<li>Atom One Dark</li>
+</ul>
+<p>推荐图标：</p>
+<ul>
+<li>material-icon-theme</li>
+<li>VSCode Icons</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/VSCode/" rel="tag"># VSCode</a>
+          
+            <a href="/blog/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/blog/tags/编程工具/" rel="tag"># 编程工具</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/12/10/pelican + github 搭建个人博客/" rel="prev" title="pelican + github 搭建个人博客">
+                pelican + github 搭建个人博客 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">七年弹指间</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/blog/archives/">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/blog/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/blog/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-基本设置与配置详解"><span class="nav-text">1 基本设置与配置详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-用户设置与工作空间设置"><span class="nav-text">1.1 用户设置与工作空间设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-更改默认用户设置与工作空间设置"><span class="nav-text">1.2 更改默认用户设置与工作空间设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-对某个语言进行特定配置"><span class="nav-text">1.3 对某个语言进行特定配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-设置-Python-版本"><span class="nav-text">1.4 设置 Python 版本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-VSCode-插件"><span class="nav-text">2 VSCode 插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-安装插件的方法"><span class="nav-text">2.1 安装插件的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-常见插件"><span class="nav-text">2.2 常见插件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-配置-Python"><span class="nav-text">2.2.2 配置 Python</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#几个小技巧"><span class="nav-text">几个小技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主题与图标"><span class="nav-text">主题与图标</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">七年弹指间</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/blog/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/blog/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/blog/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/blog/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/blog/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/blog/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/blog/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

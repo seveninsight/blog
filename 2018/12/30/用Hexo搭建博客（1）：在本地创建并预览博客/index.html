@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Hexo 是一个快速、简洁且高效的博客框架。hexo 出自台湾大学生tommy351之手，是一个基于Node.js的静态博客程序，其编译上百篇文字只需要几秒。Hexo 生成的静态网页可以直接放到 GitHub Pages 等平台上。">
+<meta name="keywords" content="github,搭建博客,Hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用Hexo搭建博客（1）：在本地创建并预览博客">
+<meta property="og:url" content="http://seveninsight.github.io/blog/2018/12/30/用Hexo搭建博客（1）：在本地创建并预览博客/index.html">
+<meta property="og:site_name" content="七年弹指间的博客">
+<meta property="og:description" content="Hexo 是一个快速、简洁且高效的博客框架。hexo 出自台湾大学生tommy351之手，是一个基于Node.js的静态博客程序，其编译上百篇文字只需要几秒。Hexo 生成的静态网页可以直接放到 GitHub Pages 等平台上。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://seveninsight.github.io/blog/2018/12/30/用Hexo搭建博客（1）：在本地创建并预览博客/hexo_preview.png">
+<meta property="og:updated_time" content="2019-01-03T03:06:35.733Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用Hexo搭建博客（1）：在本地创建并预览博客">
+<meta name="twitter:description" content="Hexo 是一个快速、简洁且高效的博客框架。hexo 出自台湾大学生tommy351之手，是一个基于Node.js的静态博客程序，其编译上百篇文字只需要几秒。Hexo 生成的静态网页可以直接放到 GitHub Pages 等平台上。">
+<meta name="twitter:image" content="http://seveninsight.github.io/blog/2018/12/30/用Hexo搭建博客（1）：在本地创建并预览博客/hexo_preview.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://seveninsight.github.io/blog/2018/12/30/用Hexo搭建博客（1）：在本地创建并预览博客/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>用Hexo搭建博客（1）：在本地创建并预览博客 | 七年弹指间的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">七年弹指间的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">知是行之始，行是知之成</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://seveninsight.github.io/blog/blog/2018/12/30/用Hexo搭建博客（1）：在本地创建并预览博客/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="七年弹指间">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="七年弹指间的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">用Hexo搭建博客（1）：在本地创建并预览博客
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-30 22:59:00" itemprop="dateCreated datePublished" datetime="2018-12-30T22:59:00+08:00">2018-12-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-03 11:06:35" itemprop="dateModified" datetime="2019-01-03T11:06:35+08:00">2019-01-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/blog/categories/搭建博客/" itemprop="url" rel="index"><span itemprop="name">搭建博客</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/blog/categories/搭建博客/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Hexo 是一个快速、简洁且高效的博客框架。hexo 出自台湾大学生tommy351之手，是一个基于Node.js的静态博客程序，其编译上百篇文字只需要几秒。Hexo 生成的静态网页可以直接放到 GitHub Pages 等平台上。</p>
+<a id="more"></a>
+<h2 id="1-安装-Hexo-的前提"><a href="#1-安装-Hexo-的前提" class="headerlink" title="1 安装 Hexo 的前提"></a>1 安装 Hexo 的前提</h2><p>在安装 Hexo 前，必须先保证电脑中已安装下列应用程序：</p>
+<ul>
+<li>Node.js</li>
+<li>Git</li>
+</ul>
+<h2 id="2-安装-Git"><a href="#2-安装-Git" class="headerlink" title="2 安装 Git"></a>2 安装 Git</h2><p>Git的客户端很多，官方的是msysgit（也就是 Git for Windows）。</p>
+<p>绿色版本的Git：<br>下载地址：<a href="https://github.com/git-for-windows/git/releases" target="_blank" rel="noopener">https://github.com/git-for-windows/git/releases</a><br>下载下来设置一下环境变量即可，Git_HOME，%Git_HOME%\bin之类的。</p>
+<h2 id="3-安装-NodeJS"><a href="#3-安装-NodeJS" class="headerlink" title="3 安装 NodeJS"></a>3 安装 NodeJS</h2><ol>
+<li><p>下载 Node.js 安装程序</p>
+<p> 官方网站：<a href="https://nodejs.org/en/" target="_blank" rel="noopener">https://nodejs.org/en/</a></p>
+</li>
+<li><p>安装 Node.js</p>
+<p> windows系统建议使用安装程序进行安装。安装时，请勾选<code>Add to PATH</code>选项。<br> 按照提示一步一步安装即可。</p>
+</li>
+<li><p>测试 Node.js 是否安装成功</p>
+<p> 输入<code>node -v</code>命令查看nodejs版本。</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">F:\Blog\hexo $ node -v</span><br><span class="line">v8.12.0</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="4-配置淘宝NPM镜像（可选）"><a href="#4-配置淘宝NPM镜像（可选）" class="headerlink" title="4 配置淘宝NPM镜像（可选）"></a>4 配置淘宝NPM镜像（可选）</h2><p>cnpmjs.org 是一个非常棒的 npm 国内镜像。由于其使用量越来越大，加上淘宝内部也有很多项目使用 NodeJS，于是，淘宝正式基于 cnpmjs 推出了镜像服务。</p>
+<p>淘宝NPM镜像 是一个完整 npmjs.org 镜像，可以用此代替官方版本(只读)，同步频率目前为 10分钟 一次以保证尽量与官方服务同步。</p>
+<ul>
+<li>使用说明</li>
+</ul>
+<p>可以使用淘宝NPM镜像定制的<code>cnpm</code>(gzip 压缩支持) 命令行工具代替默认的<code>npm</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+<ul>
+<li>安装模块</li>
+</ul>
+<p>从 registry.npm.taobao.org 安装所有模块. 当安装的时候发现安装的模块还没有同步过来, 淘宝 NPM 会自动在后台进行同步, 并且会让你从官方 NPM registry.npmjs.org 进行安装. 下次你再安装这个模块的时候, 就会直接从 淘宝 NPM 安装了.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install [name]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>同步模块</li>
+</ul>
+<p>直接通过 sync 命令马上同步一个模块, 只有 cnpm 命令行才有此功能.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm sync connect</span><br></pre></td></tr></table></figure>
+<p>可以直接通过 web 方式来同步: /sync/connect</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open https://npm.taobao.org/sync/connect</span><br></pre></td></tr></table></figure>
+<h2 id="5-安装-Hexo"><a href="#5-安装-Hexo" class="headerlink" title="5 安装 Hexo"></a>5 安装 Hexo</h2><p>确认电脑已经安装 Git 和 Node.js 必备程序后，接下来只需要使用 npm 即可完成 Hexo 的安装。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<p>因为安装了淘宝的NPM，所以可以使用<code>cnpm</code>命令：<code>cnpm install -g hexo-cli</code></p>
+<h2 id="6-使用-Hexo-创建博客框架"><a href="#6-使用-Hexo-创建博客框架" class="headerlink" title="6 使用 Hexo 创建博客框架"></a>6 使用 Hexo 创建博客框架</h2><ol>
+<li><p>指定存放博客的文件夹</p>
+<p>首先新建一个存放 Hexo 博客的文件夹，例如：<code>D:\Blog\hexo</code></p>
+</li>
+<li><p>初始化 Hexo 博客</p>
+<p> 执行下列命令，初始化 Hexo 到指定的目录，Hexo 将会在指定文件夹中新建所需要的文件。</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;folder&gt;</span><br><span class="line">cd &lt;folder&gt;</span><br><span class="line">npm install  # 或者：cnpm install</span><br></pre></td></tr></table></figure>
+<p> 也可以先进入指定的存放博客文件的文件夹，执行<code>hexo init</code>，此时命令后面不需要指定文件夹。</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br><span class="line">cd blog</span><br><span class="line">npm install  # 或者：cnpm install</span><br></pre></td></tr></table></figure>
+<p> 到这里，整个博客框架就创建完成了。Hexo 的个性化配置等以后再讨论，这里不再展开。</p>
+</li>
+<li><p>预览博客</p>
+<p>执行如下命令，启动本地服务，进行文章预览调试。<br>默认情况下，访问网址为：<code>http://localhost:4000/</code>。</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<p> 在浏览器中输入<code>http://localhost:4000/</code>预览博客，如下图：</p>
+<p> <img src="/blog/2018/12/30/用Hexo搭建博客（1）：在本地创建并预览博客/hexo_preview.png" alt="Hexo博客预览"></p>
+</li>
+<li><p>Hexo 博客框架的目录结构</p>
+<p> 新建完成后，指定文件夹的目录如下：</p>
+<pre><code>.
+├── node_modules/       # 依赖包
+├── scaffolds/          # layout模版 文件夹。
+|                       # 当新建文章时，Hexo 会根据 scaffold 来建立文件。其中的md文件可以添加编辑
+├── source/             # 资源文件夹是存放用户资源的地方。
+|   |                   # 除 _posts 文件夹之外，开头命名为 _ 的文件、文件夹和隐藏的文件将会被忽略。
+|   |                   # 该页面对应repo的根目录，404文件、favicon.ico文件，CNAME文件等都应该放这里
+|   |                   # Markdown 和 HTML 文件会被解析并放到 public 文件夹，而其他文件会被拷贝过去。
+|   ├── _posts/         # 发布文章
+|   └── _drafts/        # 草稿文章
+|
+├── themes/             # 主题文件夹。Hexo 会根据主题来生成静态页面。
+├── .gitignore
+├── _config.yml         # 全局配置文件
+├── package.json        # 应用程序的信息。EJS, Stylus 和 Markdown renderer 已默认安装，您可以自由移除。
+└── package-lock.json
+</code></pre><p> 这是初始化还没有做其他操作时的目录结构，之后，除此以外还会有<code>db.json</code>、<code>public</code>、<code>scripts</code>、<code>.deploy</code>。<br> 其中，<code>public</code>存放由<code>source</code>文件夹解析生成的静态文件。</p>
+</li>
+</ol>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li>Git 官方网站：<br> <a href="https://git-scm.com/" target="_blank" rel="noopener">https://git-scm.com/</a><br> <a href="https://gitforwindows.org/" target="_blank" rel="noopener">https://gitforwindows.org/</a></li>
+<li>绿色版 Git 下载地址：<br> <a href="https://github.com/git-for-windows/git/releases" target="_blank" rel="noopener">https://github.com/git-for-windows/git/releases</a><br> 镜像：<a href="https://npm.taobao.org/mirrors/git-for-windows" target="_blank" rel="noopener">https://npm.taobao.org/mirrors/git-for-windows</a></li>
+<li>Node.js官方网站：<a href="https://nodejs.org" target="_blank" rel="noopener">https://nodejs.org</a></li>
+<li>淘宝NPM镜像：<a href="https://npm.taobao.org" target="_blank" rel="noopener">https://npm.taobao.org</a></li>
+<li>Hexo官方网站：<a href="https://hexo.io" target="_blank" rel="noopener">https://hexo.io</a></li>
+<li>Hexo官方文档：<a href="https://hexo.io/zh-cn/docs" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs</a></li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/github/" rel="tag"># github</a>
+          
+            <a href="/blog/tags/搭建博客/" rel="tag"># 搭建博客</a>
+          
+            <a href="/blog/tags/Hexo/" rel="tag"># Hexo</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018/12/30/每天一个Linux命令（1）：pwd/" rel="next" title="每天一个Linux命令（1）：pwd">
+                <i class="fa fa-chevron-left"></i> 每天一个Linux命令（1）：pwd
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2019/01/01/每天一个Linux命令（2）：cd/" rel="prev" title="每天一个Linux命令（2）：cd">
+                每天一个Linux命令（2）：cd <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">七年弹指间</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/blog/archives/">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/blog/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/blog/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-安装-Hexo-的前提"><span class="nav-text">1 安装 Hexo 的前提</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-安装-Git"><span class="nav-text">2 安装 Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-安装-NodeJS"><span class="nav-text">3 安装 NodeJS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-配置淘宝NPM镜像（可选）"><span class="nav-text">4 配置淘宝NPM镜像（可选）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-安装-Hexo"><span class="nav-text">5 安装 Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-使用-Hexo-创建博客框架"><span class="nav-text">6 使用 Hexo 创建博客框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">七年弹指间</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/blog/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/blog/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/blog/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/blog/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/blog/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/blog/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/blog/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

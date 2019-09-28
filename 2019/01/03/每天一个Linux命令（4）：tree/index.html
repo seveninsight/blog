@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="tree命令以树状图的形式列出目录的内容。通常在写文档时需要列一下文件目录结构，这个时候tree命令就能帮个忙了。">
+<meta name="keywords" content="Linux,Shell,每天一个Linux命令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每天一个Linux命令（4）：tree">
+<meta property="og:url" content="http://seveninsight.github.io/blog/2019/01/03/每天一个Linux命令（4）：tree/index.html">
+<meta property="og:site_name" content="七年弹指间的博客">
+<meta property="og:description" content="tree命令以树状图的形式列出目录的内容。通常在写文档时需要列一下文件目录结构，这个时候tree命令就能帮个忙了。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://seveninsight.github.io/blog/2019/01/03/每天一个Linux命令（4）：tree/tree命令显示颜色.png">
+<meta property="og:image" content="http://seveninsight.github.io/blog/2019/01/03/每天一个Linux命令（4）：tree/tree命令只显示1层.png">
+<meta property="og:image" content="http://seveninsight.github.io/blog/2019/01/03/每天一个Linux命令（4）：tree/tree命令只显示目录.png">
+<meta property="og:image" content="http://seveninsight.github.io/blog/2019/01/03/每天一个Linux命令（4）：tree/tree命令显示所有文件.png">
+<meta property="og:image" content="http://seveninsight.github.io/blog/2019/01/03/每天一个Linux命令（4）：tree/tree命令显示相对路径.png">
+<meta property="og:updated_time" content="2019-01-03T14:18:20.753Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="每天一个Linux命令（4）：tree">
+<meta name="twitter:description" content="tree命令以树状图的形式列出目录的内容。通常在写文档时需要列一下文件目录结构，这个时候tree命令就能帮个忙了。">
+<meta name="twitter:image" content="http://seveninsight.github.io/blog/2019/01/03/每天一个Linux命令（4）：tree/tree命令显示颜色.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://seveninsight.github.io/blog/2019/01/03/每天一个Linux命令（4）：tree/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>每天一个Linux命令（4）：tree | 七年弹指间的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">七年弹指间的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">知是行之始，行是知之成</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://seveninsight.github.io/blog/blog/2019/01/03/每天一个Linux命令（4）：tree/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="七年弹指间">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="七年弹指间的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">每天一个Linux命令（4）：tree
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-03 11:30:55 / 修改时间：22:18:20" itemprop="dateCreated datePublished" datetime="2019-01-03T11:30:55+08:00">2019-01-03</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/blog/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/blog/categories/Linux/每天一个Linux命令/" itemprop="url" rel="index"><span itemprop="name">每天一个Linux命令</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><code>tree</code>命令以树状图的形式列出目录的内容。通常在写文档时需要列一下文件目录结构，这个时候tree命令就能帮个忙了。</p>
+<a id="more"></a>
+<h2 id="1-功能"><a href="#1-功能" class="headerlink" title="1 功能"></a>1 功能</h2><p><code>tree</code>命令与<code>ls</code>类似，都是用来显示目录下的文件与文件夹。<br>区别就是 ls 是以列表的形式显示列出，而 tree 是树状图的形式列出。</p>
+<h2 id="2-安装-tree"><a href="#2-安装-tree" class="headerlink" title="2 安装 tree"></a>2 安装 tree</h2><p>centos系统默认是没有安装 tree 命令的，需要自行安装，安装命令如下：</p>
+<pre><code>yum install -y tree
+</code></pre><h2 id="3-命令格式"><a href="#3-命令格式" class="headerlink" title="3 命令格式"></a>3 命令格式</h2><pre><code>tree [选项] [参数]
+</code></pre><p>【选项说明】</p>
+<pre><code>------- 列表选项 -------
+-a            # 显示所有文件和目录。
+-d            # 显示目录名称而非文件。
+-l            # 如遇到性质为符号连接的目录，直接列出该连接所指向的原始目录。
+-f            # 在每个文件或目录之前，显示完整的相对路径名称。
+-x            # 将范围局限在现行的文件系统中，若指定目录下的某些子目录，其存放于另一个文件系统上，则将该目录予以排除在寻找范围外。
+-L level      # 限制目录显示层级，默认所有层级，level是正整数
+-R            # Rerun tree when max dir level reached.
+-P pattern    # &lt;范本样式&gt; 只显示符合范本样式的文件和目录名称。
+-I pattern    # Do not list files that match the given pattern.
+--ignore-case # Ignore case when pattern matching.
+--matchdirs   # Include directory names in -P pattern matching.
+--noreport    # Turn off file/directory count at end of tree listing.
+--charset X   # Use charset X for terminal/HTML and indentation line output.
+--filelimit # # Do not descend dirs with more than # files in them.
+--timefmt &lt;f&gt; # Print and format time according to the format &lt;f&gt;.
+-o filename   # Output to file instead of stdout.
+
+-------- 文件选项 ---------
+-q            # 用“？”号取代控制字符，列出文件和目录名称。
+-N            # 直接列出文件和目录名称，包括控制字符。
+-Q            # Quote filenames with double quotes.
+-p            # 列出权限标示。
+-u            # 列出文件或目录的拥有者名称，没有对应的名称时，则显示用户识别码。
+-g            # 列出文件或目录的所属群组名称，没有对应的名称时，则显示群组识别码。
+-s            # 列出文件和目录大小。
+-h            # Print the size in a more human readable way.
+--si          # Like -h, but use in SI units (powers of 1000).
+-D            # 列出文件或目录的更改时间。
+-F            # 在执行文件，目录，Socket，符号连接，管道名称名称，各自加上&quot;*&quot;，&quot;/&quot;，&quot;@&quot;，&quot;|&quot;号。
+--inodes      # Print inode number of each file.
+--device      # Print device ID number to which each file belongs.
+
+------- 排序选项 -------
+-v            # Sort files alphanumerically by version.
+-t            # 用文件和目录的更改时间排序。
+-c            # Sort files by last status change time.
+-U            # Leave files unsorted.
+-r            # Reverse the order of the sort.
+--dirsfirst   # List directories before files (-U disables).
+--sort X      # Select sort: name,version,size,mtime,ctime.
+
+------- 图形选项 ------
+-i            # 不以阶梯状列出文件和目录名称。
+-A            # 使用ASNI绘图字符显示树状图而非以ASCII字符组合。
+-S            # Print with CP437 (console) graphics indentation lines.
+-n            # Turn colorization off always (-C overrides).
+-C            # 在文件和目录清单加上色彩，便于区分各种类型。
+
+------- HTML 选项 -------
+-H baseHREF   # Prints out HTML format with baseHREF as top directory.
+-T string     # Replace the default HTML title and H1 header with string.
+--nolinks     # Turn off hyperlinks in HTML output.
+
+---- 杂项选项 ----
+--version     # 输入版本信息。
+--help        # 打印使用帮助信息。
+--            # Options processing terminator.
+</code></pre><h2 id="4-常见用法与示例"><a href="#4-常见用法与示例" class="headerlink" title="4 常见用法与示例"></a>4 常见用法与示例</h2><h3 id="4-1-常见用法"><a href="#4-1-常见用法" class="headerlink" title="4.1 常见用法"></a>4.1 常见用法</h3><p>1） 用颜色区分文件类型</p>
+<pre><code>tree -C [dir]
+</code></pre><p>2）指定层级</p>
+<pre><code>tree -L &lt;number&gt; [dir]
+</code></pre><p>3）只显示目录</p>
+<pre><code>tree -d
+</code></pre><p>4）显示所有文件，包括隐藏文件</p>
+<pre><code>tree -a [dir]
+</code></pre><p>5）在每个文件或目录之前，显示完整的相对路径名称</p>
+<pre><code>tree -f [dir]
+</code></pre><p>6）按 HTML 格式将结果输出</p>
+<pre><code>tree -H &lt;HTML文件名&gt; [-T &lt;指定HTML内容的标题&gt;]
+</code></pre><h3 id="4-2-示例"><a href="#4-2-示例" class="headerlink" title="4.2 示例"></a>4.2 示例</h3><p>1） 用颜色区分文件类型</p>
+<p><img src="/blog/2019/01/03/每天一个Linux命令（4）：tree/tree命令显示颜色.png" alt="tree命令显示颜色"></p>
+<p>2）只显示一层目录</p>
+<p><img src="/blog/2019/01/03/每天一个Linux命令（4）：tree/tree命令只显示1层.png" alt="tree命令只显示1层"></p>
+<p>3）只显示目录</p>
+<p><img src="/blog/2019/01/03/每天一个Linux命令（4）：tree/tree命令只显示目录.png" alt="tree命令只显示目录"></p>
+<p>4）显示所有文件，包括隐藏文件</p>
+<p><img src="/blog/2019/01/03/每天一个Linux命令（4）：tree/tree命令显示所有文件.png" alt="tree命令显示所有文件"></p>
+<p>5）在每个文件或目录之前，显示完整的相对路径名称</p>
+<p><img src="/blog/2019/01/03/每天一个Linux命令（4）：tree/tree命令显示相对路径.png" alt="tree命令显示相对路径"></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a href="https://wangchujiang.com/linux-command/c/tree.html" target="_blank" rel="noopener">https://wangchujiang.com/linux-command/c/tree.html</a></li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/blog/tags/Shell/" rel="tag"># Shell</a>
+          
+            <a href="/blog/tags/每天一个Linux命令/" rel="tag"># 每天一个Linux命令</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2019/01/02/每天一个Linux命令（3）：ls/" rel="next" title="每天一个Linux命令（3）：ls">
+                <i class="fa fa-chevron-left"></i> 每天一个Linux命令（3）：ls
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2019/01/04/每天一个Linux命令（5）：touch/" rel="prev" title="每天一个Linux命令（5）：touch">
+                每天一个Linux命令（5）：touch <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">七年弹指间</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/blog/archives/">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/blog/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/blog/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-功能"><span class="nav-text">1 功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-安装-tree"><span class="nav-text">2 安装 tree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-命令格式"><span class="nav-text">3 命令格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-常见用法与示例"><span class="nav-text">4 常见用法与示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-常见用法"><span class="nav-text">4.1 常见用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-示例"><span class="nav-text">4.2 示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">七年弹指间</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/blog/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/blog/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/blog/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/blog/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/blog/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/blog/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/blog/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
